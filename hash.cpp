@@ -41,42 +41,7 @@ using namespace std;
 using namespace scidb;
 using namespace boost::assign;
 
-void constructfact(const Value** args, Value* res, void*)
-{
-
-	int64_t i,n;
-	uint64_t f;
-	stringstream ss;
-
-    n = args[0]->getInt64();
-
-	f=1;
-	for(i=2;i<=n;i++)
-		f *= i;
-
-	if(f==0)
-		ss << "very large number";
-	else
- 		ss << f;
-
-    res->setString(ss.str().c_str());
-
-}
-
-
-void constructmylog(const Value** args, Value* res, void*)
-{
-	double a,b,r;
-
-    a = args[0]->getDouble();
-    b = args[1]->getDouble();
-
-	r = log(a)/log(b);
-    res->setDouble(r);
-}
-
-
-void checkisprime(const Value** args, Value* res, void*)
+void checkisprime_2(const Value** args, Value* res, void*)
 {
 	int64_t i,n;
 	int8_t r;
@@ -102,26 +67,5 @@ void checkisprime(const Value** args, Value* res, void*)
     res->setString(ss.str().c_str());
 
 }
-double
-Lasso ( const double Z,
-        const double delta,
-        const double scale )
 
-{
-    /* return ((SIGN(Z)*(fabs(Z)>=delta)*(fabs(Z)-delta))*scale); */
-    double one = 1.0;
-    return ((copysign(one, Z)*(fabs(Z)>=delta)*(fabs(Z)-delta))*scale);
-}
-
-
-void jameslasso(const Value** args, Value* res, void*)
-{
-    res->setDouble ( Lasso ( args[0]->getDouble(),
-                            args[1]->getDouble(),
-                            args[2]->getDouble() ));
-}
-
-REGISTER_FUNCTION(fact, list_of("int64"), "string", constructfact);
-REGISTER_FUNCTION(mylog, list_of("double")("double"), "double", constructmylog);
-REGISTER_FUNCTION(lasso, list_of("double")("double")("double"), "double", jameslasso);
-REGISTER_FUNCTION(isprime, list_of("int64"), "string", checkisprime);
+REGISTER_FUNCTION(isprime, list_of("int64"), "string", checkisprime_2);

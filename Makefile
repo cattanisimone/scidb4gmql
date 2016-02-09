@@ -35,12 +35,11 @@ CXXFLAGS = -pedantic -W -Wextra -Wall -Wno-variadic-macros -Wno-strict-aliasing 
 INC = -I. -DPROJECT_ROOT="\"$(SCIDB)\"" -I"$(SCIDB_THIRDPARTY_PREFIX)/3rdparty/boost/include/" \
       -I"$(SCIDB)/include" -I./extern
 
-LIBS = -shared -Wl,-soname,libcu.so -ldl -L. \
+LIBS = -shared -Wl,-soname,libgmql.so -ldl -L. \
        -L"$(SCIDB_THIRDPARTY_PREFIX)/3rdparty/boost/lib" -L"$(SCIDB)/lib" \
        -Wl,-rpath,$(SCIDB)/lib:$(RPATH)
 
-SRCS = Logicalcu.cpp \
-       Physicalcu.cpp
+SRCS = hash.cpp
 
 # Compiler settings for SciDB version >= 15.7
 ifneq ("$(wildcard /usr/bin/g++-4.9)","")
@@ -55,17 +54,16 @@ else
   endif
 endif
 
-all: libcu.so
+all: libgmql.so
 
 clean:
 	rm -rf *.so *.o
 
-libcu.so: $(SRCS)
+libgmql.so: $(SRCS)
 	@if test ! -d "$(SCIDB)"; then echo  "Error. Try:\n\nmake SCIDB=<PATH TO SCIDB INSTALL PATH>"; exit 1; fi
-	$(CXX) $(CXXFLAGS) $(INC) -o Logicalcu.o -c Logicalcu.cpp
-	$(CXX) $(CXXFLAGS) $(INC) -o Physicalcu.o -c Physicalcu.cpp
-	$(CXX) $(CXXFLAGS) $(INC) -o libcu.so plugin.cpp Logicalcu.o Physicalcu.o $(LIBS)
-	@echo "Now copy libcu.so to $(INSTALL_DIR) on all your SciDB nodes, and restart SciDB."
+	$(CXX) $(CXXFLAGS) $(INC) -o hash.o -c hash.cpp
+	$(CXX) $(CXXFLAGS) $(INC) -o libgmql.so plugin.cpp hash.o $(LIBS)
+	@echo "Now copy libgmql.so to $(INSTALL_DIR) on all your SciDB nodes, and restart SciDB."
 
 test:
 	echo write me XXX
