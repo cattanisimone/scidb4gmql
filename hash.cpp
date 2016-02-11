@@ -41,6 +41,14 @@ using namespace std;
 using namespace scidb;
 using namespace boost::assign;
 
+void ddd(const Value** args, Value* res, void*)
+{
+	int64_t n, r;
+	n = args[0]->getInt64();
+	r = 2*n;
+	res->setDouble(r);
+}
+
 void checkisprime_2(const Value** args, Value* res, void*)
 {
 	int64_t i,n;
@@ -69,3 +77,4 @@ void checkisprime_2(const Value** args, Value* res, void*)
 }
 
 REGISTER_FUNCTION(isprime, list_of("int64"), "string", checkisprime_2);
+REGISTER_FUNCTION(ddd, list_of("int64"), "double", ddd);
