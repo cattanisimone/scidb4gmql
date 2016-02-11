@@ -15,14 +15,14 @@ void ddd(const Value** args, Value* res, void*)
 {
 	int64_t n, r;
 	n = args[0]->getInt64();
-	r = 2*n;
+	r = 2 * (double)n;
 	res->setDouble(r);
 }
 
 void checkisprime_2(const Value** args, Value* res, void*)
 {
 	int64_t i,n;
-	int8_t r;
+	double r;
 	stringstream ss;
 
     n = args[0]->getInt64();
