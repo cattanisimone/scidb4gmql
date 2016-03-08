@@ -30,12 +30,10 @@ void checkisprime_2(const Value** args, Value* res, void*)
 			}
 
 	if(r==0 && n>1)
-		ss << " :prime";
+		res->setInt64(1);
 	else
- 		ss << " :not prime";
-
-    res->setString(ss.str().c_str());
+ 		res->setInt64(0);
 
 }
 
-REGISTER_FUNCTION(isprime, list_of("int64"), "string", checkisprime_2);
+REGISTER_FUNCTION(isprime, list_of("int64"), "int64", checkisprime_2);
