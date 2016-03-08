@@ -20,10 +20,12 @@ void dimension_hash(const Value** args, Value* res, void*)
 
   	std::string value = args[0]->getString();
 
-	if(value.size() > 10)
-		res->setInt64(1);
-	else
- 		res->setInt64(0);
+  	int64_t hash = 7;
+
+  	for(int i=0; i<value.size(); i++)
+  		hash = hash*31 + value[i]
+
+	res->setInt64(hash);
 }
 
 REGISTER_FUNCTION(dim_hash, list_of("string"), "int64", dimension_hash);
