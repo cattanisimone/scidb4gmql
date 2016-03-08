@@ -13,6 +13,9 @@ using namespace boost::assign;
 
 void dimension_hash(const Value** args, Value* res, void*)
 {
+	int64_t hash = 7;
+  	int i; 
+
 	if(args[0]->isNull()){
     	res->setNull(args[0]->getMissingReason());
     	return;
@@ -20,12 +23,9 @@ void dimension_hash(const Value** args, Value* res, void*)
 
   	std::string value = args[0]->getString();
 
-  	int64_t hash = 7;
-  	int i;
-
-  	for(i=0; i<value.size(); i++)
+  	/*for(i=0; i<value.size(); i++)
   		hash = hash*31 + 25
-
+	*/
 	res->setInt64(hash);
 }
 
