@@ -158,7 +158,7 @@ void dimension_hash(const Value** args, Value* res, void*)
 	//strcpy(cstr, value.c_str());
 
 	char *test = "test212"
-  	res->setInt64(sha3(test));
+  	res->setInt64(3);
 }
 
 REGISTER_FUNCTION(dim_hash, list_of("string"), "int64", dimension_hash);
