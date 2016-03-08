@@ -21,9 +21,10 @@ void dimension_hash(const Value** args, Value* res, void*)
   	std::string value = args[0]->getString();
 
   	int64_t hash = 7;
+  	int i;
 
-  	for(int i=0; i<value.size(); i++)
-  		hash = hash*31 + value[i]
+  	for(i=0; i<value.size(); i++)
+  		hash = hash*31 + 25
 
 	res->setInt64(hash);
 }
