@@ -142,10 +142,10 @@ void dimension_hash(const Value** args, Value* res, void*)
   	}
 
   	std::string value = args[0]->getString();
-  	//char *cstr = new char[value.length() + 1];
-	//strcpy(cstr, value.c_str());
+  	char *string = new char[value.length() + 1];
+	strcpy(cstr, value.c_str());
 
-  	char *string = "test";
+  	//char *string = "test";
 
 	uint8_t md[SIZE];
     keccak((uint8_t *) string, strlen(string), md, SIZE);
