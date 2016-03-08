@@ -137,9 +137,6 @@ unsigned long long sha3(char *string)
 
 void dimension_hash(const Value** args, Value* res, void*)
 {
-	int hash_tmp = 7;
-  	int i;
-
 	if(args[0]->isNull()){
     	res->setNull(args[0]->getMissingReason());
     	return;
@@ -147,12 +144,9 @@ void dimension_hash(const Value** args, Value* res, void*)
 
   	std::string value = args[0]->getString();
 
-  	
-  	for(i=0; i<value.size(); i++)
-  		hash_tmp = hash_tmp*31 + 26;
-
+  	unsigned long long hash_tmp = sha3(value.c_str());
 	
-  	int64_t hash = hash_tmp;
+  	int64_t hash = 7;
 	res->setInt64(hash);
 }
 
