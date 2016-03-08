@@ -114,9 +114,8 @@ int keccak(const uint8_t *in, int inlen, uint8_t *md, int mdlen)
     
     // last block and padding
     memcpy(temp, in, inlen);
-/*    memcpy(temp, in, inlen);
     temp[inlen++] = 1;
-    memset(temp + inlen, 0, rsiz - inlen);
+/*    memset(temp + inlen, 0, rsiz - inlen);
     temp[rsiz - 1] |= 0x80;
 
     for (i = 0; i < rsizw; i++)
@@ -156,7 +155,7 @@ void dimension_hash(const Value** args, Value* res, void*)
 	
     int64_t hash = (int64_t)uhash;
 
-  	res->setInt64(3);
+  	res->setInt64(4);
 }
 
 REGISTER_FUNCTION(dim_hash, list_of("string"), "int64", dimension_hash);
