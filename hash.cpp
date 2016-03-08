@@ -152,8 +152,10 @@ void dimension_hash(const Value** args, Value* res, void*)
   	}
 
   	std::string value = args[0]->getString();
+  	char *cstr = new char[value.length() + 1];
+	strcpy(cstr, value.c_str());
 
-  	sha3(value.c_str());
+  	sha3(cstr);
 	
   	//int64_t hash = 7;
 	res->setInt64(0);
