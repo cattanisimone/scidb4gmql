@@ -11,6 +11,10 @@
 
 #define SIZE 8
 
+#ifndef KECCAK_ROUNDS
+#define KECCAK_ROUNDS 24
+#endif
+
 #ifndef ROTL64
 #define ROTL64(x, y) (((x) << (y)) | ((x) >> (64 - (y))))
 #endif
@@ -123,7 +127,7 @@ int keccak(const uint8_t *in, int inlen, uint8_t *md, int mdlen)
 
     return 0;
 }
-
+/*
 unsigned long long sha3(char *string)
 {
     uint8_t md[SIZE];
@@ -135,7 +139,7 @@ unsigned long long sha3(char *string)
 
     return hash;  
 }
-
+*/
 
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
