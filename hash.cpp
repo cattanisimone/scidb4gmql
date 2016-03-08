@@ -1,6 +1,8 @@
 #include <vector>
 #include <boost/assign.hpp>
 #include <math.h>
+#include <stdint.h>
+#include <string.h>
 
 #include "query/Operator.h"
 #include "query/FunctionLibrary.h"
