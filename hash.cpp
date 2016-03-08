@@ -26,6 +26,8 @@ void dimension_hash(const Value** args, Value* res, void*)
   	
   	for(i=0; i<value.size(); i++)
   		hash_tmp = hash_tmp*31 + 25;
+
+  	printf("hash: %d\n", hash_tmp);
 	
   	int64_t hash = hash_tmp;
 	res->setInt64(hash);
