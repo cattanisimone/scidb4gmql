@@ -122,9 +122,9 @@ int keccak(const uint8_t *in, int inlen, uint8_t *md, int mdlen)
         st[i] ^= ((uint64_t *) temp)[i];
 
     keccakf(st, KECCAK_ROUNDS);
-*/
-    memcpy(md, st, mdlen);
 
+    memcpy(md, st, mdlen);
+*/
     return 0;
 }
 
