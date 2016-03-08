@@ -11,7 +11,7 @@ using namespace std;
 using namespace scidb;
 using namespace boost::assign;
 
-void checkisprime_2(const Value** args, Value* res, void*)
+void dimension_hash(const Value** args, Value* res, void*)
 {
 	int64_t i,n;
 	double r;
@@ -36,4 +36,4 @@ void checkisprime_2(const Value** args, Value* res, void*)
 
 }
 
-REGISTER_FUNCTION(dim_hash, list_of("int64"), "int64", checkisprime_2);
+REGISTER_FUNCTION(dim_hash, list_of("int64"), "int64", dimension_hash);
