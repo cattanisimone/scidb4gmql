@@ -158,7 +158,7 @@ void dimension_hash(const Value** args, Value* res, void*)
 	//strcpy(cstr, value.c_str());
 
 	uint8_t md[SIZE];
-    keccak((uint8_t *) string, strlen(string), md, SIZE);
+    //keccak((uint8_t *) string, strlen(string), md, SIZE);
     
     uint64_t uhash = 0;
     /*for(int i=0; i<SIZE; i++)
