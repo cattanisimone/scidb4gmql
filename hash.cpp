@@ -128,19 +128,6 @@ int keccak(const uint8_t *in, int inlen, uint8_t *md, int mdlen)
     return 0;
 }
 
-int64_t sha3(char *string)
-{
-    uint8_t md[SIZE];
-    keccak((uint8_t *) string, strlen(string), md, SIZE);
-    
-    uint64_t uhash = 0;
-    for(int i=0; i<SIZE; i++)
-        uhash = uhash*256 + md[i];
-
-    int64_t hash = (int64_t)uhash;
-
-    return (hash < 0 ? -hash : hash);  
-}
 
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
