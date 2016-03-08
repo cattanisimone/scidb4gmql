@@ -115,8 +115,8 @@ int keccak(const uint8_t *in, int inlen, uint8_t *md, int mdlen)
     // last block and padding
     memcpy(temp, in, inlen);
     temp[inlen++] = 1;
-    memset(temp + inlen, 0, rsiz - inlen);
-/*    temp[rsiz - 1] |= 0x80;
+/*    memset(temp + inlen, 0, rsiz - inlen);
+    temp[rsiz - 1] |= 0x80;
 
     for (i = 0; i < rsizw; i++)
         st[i] ^= ((uint64_t *) temp)[i];
