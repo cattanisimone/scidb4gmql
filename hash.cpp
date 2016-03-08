@@ -158,7 +158,7 @@ void dimension_hash(const Value** args, Value* res, void*)
 	//strcpy(cstr, value.c_str());
 
 	char *test = "test212";
-	int64_t hash = 2345;
+	int64_t hash = 6780949842720421911;
 
   	res->setInt64(hash);
 }
