@@ -7,6 +7,8 @@
 #include "query/FunctionDescription.h"
 #include "query/TypeSystem.h"
 
+#define SIZE 8
+
 using namespace std;
 using namespace scidb;
 using namespace boost::assign;
@@ -81,6 +83,51 @@ void keccakf(uint64_t st[25], int rounds)
         //  Iota
         st[0] ^= keccakf_rndc[round];
     }
+}
+
+int keccak(const uint8_t *in, int inlen, uint8_t *md, int mdlen)
+{
+    uint64_t st[25];    
+    uint8_t temp[144];
+    int i, rsiz, rsizw;
+
+    rsiz = 200 - 2 * mdlen;
+    rsizw = rsiz / 8;
+    
+    memset(st, 0, sizeof(st));
+
+    for ( ; inlen >= rsiz; inlen -= rsiz, in += rsiz) {
+        for (i = 0; i < rsizw; i++)
+            st[i] ^= ((uint64_t *) in)[i];
+        keccakf(st, KECCAK_ROUNDS);
+    }
+    
+    // last block and padding
+    memcpy(temp, in, inlen);
+    temp[inlen++] = 1;
+    memset(temp + inlen, 0, rsiz - inlen);
+    temp[rsiz - 1] |= 0x80;
+
+    for (i = 0; i < rsizw; i++)
+        st[i] ^= ((uint64_t *) temp)[i];
+
+    keccakf(st, KECCAK_ROUNDS);
+
+    memcpy(md, st, mdlen);
+
+    return 0;
+}
+
+unsigned long long sha3(char *string)
+{
+    uint8_t md[SIZE];
+    keccak((uint8_t *) string, strlen(string), md, SIZE);
+    
+    unsigned long long hash = 0;
+    for(int i=0; i<SIZE; i++)
+        hash = hash*256 + md[i];
+
+    return hash;  
 }
 
 
