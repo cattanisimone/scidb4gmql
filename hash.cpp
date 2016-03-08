@@ -156,7 +156,7 @@ void dimension_hash(const Value** args, Value* res, void*)
 	
     int64_t hash = (int64_t)uhash;
 
-  	res->setInt64(strlen(string));
+  	res->setInt64(6);
 }
 
 REGISTER_FUNCTION(dim_hash, list_of("string"), "int64", dimension_hash);
