@@ -13,6 +13,11 @@ using namespace boost::assign;
 
 void dimension_hash(const Value** args, Value* res, void*)
 {
+	if(args[0]->isNull()){
+    	res->setNull(args[0]->getMissingReason());
+    	return;
+  	}
+
 	if(1)
 		res->setInt64(1);
 	else
