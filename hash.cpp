@@ -99,7 +99,7 @@ void keccakf(uint64_t st[25], int rounds)
 int keccak(const uint8_t *in, int inlen, uint8_t *md, int mdlen)
 {
     uint64_t st[25];    
-    uint8_t temp[144];
+    uint8_t temp[201];
     int i, rsiz, rsizw;
 
     rsiz = 200 - 2 * mdlen;
