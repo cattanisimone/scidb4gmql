@@ -11,40 +11,24 @@ using namespace std;
 using namespace scidb;
 using namespace boost::assign;
 
-void ddd(const Value** args, Value* res, void*)
+
+void dimension_hash(const Value** args, Value* res, void*)
 {
-	int64_t n, r;
-	n = args[0]->getInt64();
-	r = 2 * (double)n;
-	res->setDouble(r);
-}
+	if(args[0]->isNull())
+  	{
+    	res->setNull(args[0]->getMissingReason());
+    	return;
+  	}
+  	
+  	int64_t l;
+  	char buf[8];
+  	memset(buf,0,8);
+  	snprintf(buf,8,"%s",args[0]->getString());
+    
+  	l = 42;
 
-void checkisprime_2(const Value** args, Value* res, void*)
-{
-	int64_t i,n;
-	double r;
-	stringstream ss;
-
-    n = args[0]->getInt64();
-	r = 0;
-	ss << n;
-
-	if(n>1)
-		for(i=2;i<=sqrt(n);i++)
-			if(n%i==0)
-			{
-				r = 1;
-				break;
-			}
-
-	if(r==0 && n>1)
-		ss << " :prime";
-	else
- 		ss << " :not prime";
-
-    res->setString(ss.str().c_str());
+    res->setInt64(l)
 
 }
 
-REGISTER_FUNCTION(isprime, list_of("int64"), "string", checkisprime_2);
-REGISTER_FUNCTION(ddd, list_of("int64"), "double", ddd);
+REGISTER_FUNCTION(dim_hash, list_of("string"), "int64", dimension_hash);
