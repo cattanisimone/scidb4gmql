@@ -157,10 +157,16 @@ void dimension_hash(const Value** args, Value* res, void*)
   	//char *cstr = new char[value.length() + 1];
 	//strcpy(cstr, value.c_str());
 
-	char *test = "test212";
-	int64_t hash = sha3(test);
+	uint8_t md[SIZE];
+    keccak((uint8_t *) string, strlen(string), md, SIZE);
+    
+    uint64_t uhash = 0;
+    /*for(int i=0; i<SIZE; i++)
+        uhash = uhash*256 + md[i];
+	*/
+    int64_t hash = (int64_t)uhash;
 
-  	res->setInt64(25);
+  	res->setInt64(hash);
 }
 
 REGISTER_FUNCTION(dim_hash, list_of("string"), "int64", dimension_hash);
