@@ -100,7 +100,7 @@ int keccak(const uint8_t *in, int inlen, uint8_t *md, int mdlen)
     uint64_t st[25];    
     uint8_t temp[144];
     int i, rsiz, rsizw;
-
+/*
     rsiz = 200 - 2 * mdlen;
     rsizw = rsiz / 8;
     
@@ -124,7 +124,7 @@ int keccak(const uint8_t *in, int inlen, uint8_t *md, int mdlen)
     keccakf(st, KECCAK_ROUNDS);
 
     memcpy(md, st, mdlen);
-
+*/
     return 0;
 }
 
@@ -145,7 +145,7 @@ void dimension_hash(const Value** args, Value* res, void*)
 	//strcpy(cstr, value.c_str());
 
 	uint8_t md[SIZE];
-    //keccak((uint8_t *) string, strlen(string), md, SIZE);
+    keccak((uint8_t *) string, strlen(string), md, SIZE);
     
     uint64_t uhash = 0;
     for(int i=0; i<SIZE; i++)
