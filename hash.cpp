@@ -105,17 +105,17 @@ int keccak(const uint8_t *in, int inlen, uint8_t *md, int mdlen)
     rsizw = rsiz / 8;
     
     memset(st, 0, sizeof(st));
-
+/*
     for ( ; inlen >= rsiz; inlen -= rsiz, in += rsiz) {
         for (i = 0; i < rsizw; i++)
             st[i] ^= ((uint64_t *) in)[i];
         keccakf(st, KECCAK_ROUNDS);
     }
-/*    
+  */  
     // last block and padding
     memcpy(temp, in, inlen);
     temp[inlen++] = 1;
-    memset(temp + inlen, 0, rsiz - inlen);
+    memset(temp + inlen, 0, rsiz - inlen); /*
     temp[rsiz - 1] |= 0x80;
 
     for (i = 0; i < rsizw; i++)
