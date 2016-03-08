@@ -128,12 +128,12 @@ int keccak(const uint8_t *in, int inlen, uint8_t *md, int mdlen)
     return 0;
 }
 
-unsigned long long sha3(char *string)
+uint64_t sha3(char *string)
 {
     uint8_t md[SIZE];
     keccak((uint8_t *) string, strlen(string), md, SIZE);
     
-    unsigned long long hash = 0;
+    uint64_t hash = 0;
     for(int i=0; i<SIZE; i++)
         hash = hash*256 + md[i];
 
@@ -155,7 +155,8 @@ void dimension_hash(const Value** args, Value* res, void*)
   	char *cstr = new char[value.length() + 1];
 	strcpy(cstr, value.c_str());
 
-	res->setInt64(sha3(cstr));
+	res->setInt64(0);
 }
 
 REGISTER_FUNCTION(dim_hash, list_of("string"), "int64", dimension_hash);
+
