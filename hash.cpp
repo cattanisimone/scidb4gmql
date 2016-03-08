@@ -18,7 +18,9 @@ void dimension_hash(const Value** args, Value* res, void*)
     	return;
   	}
 
-	if(1)
+  	std::string value = args[0]->getString();
+
+	if(value.size() > 10)
 		res->setInt64(1);
 	else
  		res->setInt64(0);
