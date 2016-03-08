@@ -148,9 +148,9 @@ void dimension_hash(const Value** args, Value* res, void*)
     //keccak((uint8_t *) string, strlen(string), md, SIZE);
     
     uint64_t uhash = 0;
-    /*for(int i=0; i<SIZE; i++)
+    for(int i=0; i<SIZE; i++)
         uhash = uhash*256 + md[i];
-	*/
+	
     int64_t hash = (int64_t)uhash;
 
   	res->setInt64(hash);
