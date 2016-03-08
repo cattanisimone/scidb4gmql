@@ -128,16 +128,18 @@ int keccak(const uint8_t *in, int inlen, uint8_t *md, int mdlen)
     return 0;
 }
 
-uint64_t sha3(char *string)
+int64_t sha3(char *string)
 {
     uint8_t md[SIZE];
     keccak((uint8_t *) string, strlen(string), md, SIZE);
     
-    uint64_t hash = 0;
+    uint64_t uhash = 0;
     for(int i=0; i<SIZE; i++)
-        hash = hash*256 + md[i];
+        uhash = uhash*256 + md[i];
 
-    return hash;  
+    int64_t hash = (int64_t)uhash;
+
+    return (hash < 0 ? -hash : hash);  
 }
 
 // ----------------------------------------------------------------------
@@ -155,7 +157,7 @@ void dimension_hash(const Value** args, Value* res, void*)
   	//char *cstr = new char[value.length() + 1];
 	//strcpy(cstr, value.c_str());
 
-  	uint64_t hash = sha3("test");
+  	int64_t hash = sha3("test");
 
 	res->setInt64(0);
 }
