@@ -127,7 +127,7 @@ int keccak(const uint8_t *in, int inlen, uint8_t *md, int mdlen)
 
     return 0;
 }
-/*
+
 unsigned long long sha3(char *string)
 {
     uint8_t md[SIZE];
@@ -139,7 +139,6 @@ unsigned long long sha3(char *string)
 
     return hash;  
 }
-*/
 
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
