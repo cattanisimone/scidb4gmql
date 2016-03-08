@@ -112,8 +112,9 @@ int keccak(const uint8_t *in, int inlen, uint8_t *md, int mdlen)
         keccakf(st, KECCAK_ROUNDS);
     }
     
-/*    // last block and padding
+    // last block and padding
     memcpy(temp, in, inlen);
+/*    memcpy(temp, in, inlen);
     temp[inlen++] = 1;
     memset(temp + inlen, 0, rsiz - inlen);
     temp[rsiz - 1] |= 0x80;
