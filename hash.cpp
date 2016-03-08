@@ -36,4 +36,4 @@ void checkisprime_2(const Value** args, Value* res, void*)
 
 }
 
-REGISTER_FUNCTION(isprime, list_of("int64"), "int64", checkisprime_2);
+REGISTER_FUNCTION(dim_hash, list_of("int64"), "int64", checkisprime_2);
