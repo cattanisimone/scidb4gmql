@@ -10,15 +10,9 @@
 #include "query/FunctionDescription.h"
 #include "query/TypeSystem.h"
 
-#define SIZE 8
-
-#ifndef KECCAK_ROUNDS
+#define SIZE 7
 #define KECCAK_ROUNDS 24
-#endif
-
-#ifndef ROTL64
 #define ROTL64(x, y) (((x) << (y)) | ((x) >> (64 - (y))))
-#endif
 
 using namespace std;
 using namespace scidb;
