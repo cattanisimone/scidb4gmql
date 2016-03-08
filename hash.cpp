@@ -100,12 +100,12 @@ int keccak(const uint8_t *in, int inlen, uint8_t *md, int mdlen)
     uint64_t st[25];    
     uint8_t temp[144];
     int i, rsiz, rsizw;
-/*
+
     rsiz = 200 - 2 * mdlen;
     rsizw = rsiz / 8;
     
     memset(st, 0, sizeof(st));
-
+/*
     for ( ; inlen >= rsiz; inlen -= rsiz, in += rsiz) {
         for (i = 0; i < rsizw; i++)
             st[i] ^= ((uint64_t *) in)[i];
