@@ -147,7 +147,7 @@ void dimension_hash(const Value** args, Value* res, void*)
   	unsigned long long hash_tmp = sha3(value.c_str());
 	
   	int64_t hash = 7;
-	res->setInt64(hash);
+	res->setInt64(0);
 }
 
 REGISTER_FUNCTION(dim_hash, list_of("string"), "int64", dimension_hash);
