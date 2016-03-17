@@ -163,4 +163,4 @@ void dimension_hash(const Value** args, Value* res, void*)
 // ----------------------------------------------------------------------
 
 
-REGISTER_FUNCTION(gqml_hash, list_of("string"), "int64", dimension_hash);
+REGISTER_FUNCTION(gmql_hash, list_of("string"), "int64", dimension_hash);
