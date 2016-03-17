@@ -62,7 +62,7 @@ clean:
 libgmql.so: $(SRCS)
 	@if test ! -d "$(SCIDB)"; then echo  "Error. Try:\n\nmake SCIDB=<PATH TO SCIDB INSTALL PATH>"; exit 1; fi
 	$(CXX) $(CXXFLAGS) $(INC) -o gmql.o -c gmql.cpp
-	$(CXX) $(CXXFLAGS) $(INC) -o libgmql.so plugin.cpp hash.o $(LIBS)
+	$(CXX) $(CXXFLAGS) $(INC) -o libgmql.so plugin.cpp gmql.o $(LIBS)
 	@echo "Now copy libgmql.so to $(INSTALL_DIR) on all your SciDB nodes, and restart SciDB."
 
 test:
