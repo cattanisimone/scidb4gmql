@@ -162,8 +162,7 @@ void key_string_sort(const Value** args, Value* res, void*)
     res->setNull(args[0]->getMissingReason());
     return;
   }
-  std::string value = args[0]->getString();
-  std::string input = value;
+  std::string input = args[0]->getString();
   std::vector<string> words;
 
   for(std::size_t found = input.find("$$$");
