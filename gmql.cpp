@@ -162,10 +162,26 @@ void key_string_sort(const Value** args, Value* res, void*)
     res->setNull(args[0]->getMissingReason());
     return;
   }
-
   std::string value = args[0]->getString();
+  std::string input = value;
+  std::vector<string> words;
 
-  res->setString("pippo");
+  for(std::size_t found = input.find("$$$");
+      found != std::string::npos;
+      input = input.substr(found+3, input.size()),
+      found = input.find("$$$"))
+    words.push_back(input.substr(0,found+3));
+
+  for(int i=0; i<words.size(); i++)
+    for(int j=0; j<words.size()-i-1; j++)
+      if(words[j] > words[j+1])
+        swap(words[j], words[j+1]);
+
+  std::string output = "";
+  for(int i=0; i<words.size(); i++)
+    output += words[i];
+
+  res->setString(output);
 }
 
 
