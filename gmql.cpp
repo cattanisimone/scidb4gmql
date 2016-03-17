@@ -156,7 +156,17 @@ void dimension_hash(const Value** args, Value* res, void*)
 // ----------------------------------------------------------------------
 
 
+void key_string_sort(const Value** args, Value* res, void*)
+{
+  if(args[0]->isNull()){
+    res->setNull(args[0]->getMissingReason());
+    return;
+  }
 
+  std::string value = args[0]->getString();
+
+  res->setString("pippo");
+}
 
 
 // ----------------------------------------------------------------------
@@ -164,3 +174,4 @@ void dimension_hash(const Value** args, Value* res, void*)
 
 
 REGISTER_FUNCTION(gmql_hash, list_of("string"), "int64", dimension_hash);
+REGISTER_FUNCTION(gmql_key_sort, list_of("string"), "string", key_string_sort);
