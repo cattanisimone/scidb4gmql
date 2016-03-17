@@ -1,4 +1,4 @@
-ifeq ($(SCIDB),) 
+ifeq ($(SCIDB),)
   X := $(shell which scidb 2>/dev/null)
   ifneq ($(X),)
     X := $(shell dirname ${X})
@@ -31,7 +31,7 @@ CFLAGS = -pedantic -W -Wextra -Wall -Wno-variadic-macros -Wno-strict-aliasing \
          -Wno-long-long -Wno-unused-parameter -fPIC -D_STDC_FORMAT_MACROS \
          -Wno-system-headers -isystem  $(OPTIMIZED) -D_STDC_LIMIT_MACROS -std=c99
 CXXFLAGS = -pedantic -W -Wextra -Wall -Wno-variadic-macros -Wno-strict-aliasing \
-         -Wno-long-long -Wno-unused-parameter -fPIC $(OPTIMIZED) 
+         -Wno-long-long -Wno-unused-parameter -fPIC $(OPTIMIZED)
 INC = -I. -DPROJECT_ROOT="\"$(SCIDB)\"" -I"$(SCIDB_THIRDPARTY_PREFIX)/3rdparty/boost/include/" \
       -I"$(SCIDB)/include" -I./extern
 
@@ -39,7 +39,7 @@ LIBS = -shared -Wl,-soname,libgmql.so -ldl -L. \
        -L"$(SCIDB_THIRDPARTY_PREFIX)/3rdparty/boost/lib" -L"$(SCIDB)/lib" \
        -Wl,-rpath,$(SCIDB)/lib:$(RPATH)
 
-SRCS = hash.cpp
+SRCS = gmql.cpp
 
 # Compiler settings for SciDB version >= 15.7
 ifneq ("$(wildcard /usr/bin/g++-4.9)","")
@@ -61,7 +61,7 @@ clean:
 
 libgmql.so: $(SRCS)
 	@if test ! -d "$(SCIDB)"; then echo  "Error. Try:\n\nmake SCIDB=<PATH TO SCIDB INSTALL PATH>"; exit 1; fi
-	$(CXX) $(CXXFLAGS) $(INC) -o hash.o -c hash.cpp
+	$(CXX) $(CXXFLAGS) $(INC) -o gmql.o -c gmql.cpp
 	$(CXX) $(CXXFLAGS) $(INC) -o libgmql.so plugin.cpp hash.o $(LIBS)
 	@echo "Now copy libgmql.so to $(INSTALL_DIR) on all your SciDB nodes, and restart SciDB."
 
